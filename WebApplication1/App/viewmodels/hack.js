@@ -7,23 +7,22 @@
     return {
         displayName: 'Home',
         feeds: ko.observableArray([]),
-        images: ko.observableArray([]),
         activate: function () {
 
             var me = this;
 
             var feed1 = { feedName: "Flickr1", items: ko.observableArray([]) };
             http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'new york city', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
-                feed1.items.push(response.items[0]);
-                feed1.items.push(response.items[1]);
-                feed1.items.push(response.items[2]);
+                for (var i = 0; i < 5; i++) {
+                    feed1.items.push(response.items[i]);
+                }
             });
             
             var feed2 = { feedName: "Flickr2", items: ko.observableArray([]) };
-            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'australia', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
-                feed2.items.push(response.items[0]);
-                feed2.items.push(response.items[1]);
-                feed2.items.push(response.items[2]);
+            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'melbourne demons', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
+                for (var i = 0; i < 5; i++) {
+                    feed2.items.push(response.items[i]);
+                }
             });
 
             me.feeds.push(feed1);
