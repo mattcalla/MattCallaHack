@@ -11,22 +11,10 @@
 
             var me = this;
 
-            var feed1 = { feedName: "Flickr1", items: ko.observableArray([]) };
-            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'new york city', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
-                for (var i = 0; i < 5; i++) {
-                    feed1.items.push(response.items[i]);
-                }
-            });
-            
-            var feed2 = { feedName: "Flickr2", items: ko.observableArray([]) };
-            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'melbourne demons', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
-                for (var i = 0; i < 5; i++) {
-                    feed2.items.push(response.items[i]);
-                }
-            });
-
-            me.feeds.push(feed1);
-            me.feeds.push(feed2);
+            me.feeds.push(getFeed('new york city'));
+            me.feeds.push(getFeed('melbourne'));
+            me.feeds.push(getFeed('chocolate'));
+            me.feeds.push(getFeed('saturday night live'));
 
         },
         select: function (item) {
@@ -38,6 +26,19 @@
         canDeactivate: function () {
             //the router's activator calls this function to see if it can leave the screen
             return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
-        }
+        },
+
+        
     };
+
+    function getFeed(search) {
+        var feed = { feedName: search, items: ko.observableArray([]) };
+        http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: search, tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
+            for (var i = 0; i < 5; i++) {
+                feed.items.push(response.items[i]);
+            }
+        });
+
+        return feed;
+    }
 });

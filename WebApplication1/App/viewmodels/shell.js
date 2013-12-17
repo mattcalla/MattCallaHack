@@ -8,7 +8,7 @@
         },
         activate: function () {
             router.map([
-                { route: '', moduleId: "viewmodels/hack", nav: true }
+                { route: '', title: 'Home', moduleId: 'viewmodels/hack', nav: true }
             ]).buildNavigationModel();
             
             return router.activate();
