@@ -5,18 +5,30 @@
     //See the "welcome" module for an example of function export.
 
     return {
-        displayName: 'Hack',
+        displayName: 'Home',
+        feeds: ko.observableArray([]),
         images: ko.observableArray([]),
         activate: function () {
-            //the router's activator calls this function and waits for it to complete before proceding
-            if (this.images().length > 0) {
-                return;
-            }
 
-            var that = this;
-            return http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'mount ranier', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
-                that.images(response.items);
+            var me = this;
+
+            var feed1 = { feedName: "Flickr1", items: ko.observableArray([]) };
+            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'new york city', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
+                feed1.items.push(response.items[0]);
+                feed1.items.push(response.items[1]);
+                feed1.items.push(response.items[2]);
             });
+            
+            var feed2 = { feedName: "Flickr2", items: ko.observableArray([]) };
+            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'australia', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function (response) {
+                feed2.items.push(response.items[0]);
+                feed2.items.push(response.items[1]);
+                feed2.items.push(response.items[2]);
+            });
+
+            me.feeds.push(feed1);
+            me.feeds.push(feed2);
+
         },
         select: function (item) {
             //the app model allows easy display of modal dialogs by passing a view model

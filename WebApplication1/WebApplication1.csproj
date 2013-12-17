@@ -181,7 +181,6 @@
     <Content Include="App\views\detail.html" />
     <Content Include="App\views\hack.html" />
     <Content Include="App\views\shell.html" />
-    <Content Include="App\views\welcome.html" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -253,9 +252,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -266,7 +262,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Durandal\Index.cshtml" />
     <Content Include="Views\Durandal\_splash.cshtml" />
   </ItemGroup>
